@@ -1,23 +1,22 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 // console.log(galleryItems);
 
-const galleryRef  = document.querySelector(`.gallery`);
-
+const galleryRef = document.querySelector(`.gallery`);
 
 const galleryElements = makeGalleryMarkup(galleryItems);
+galleryRef.insertAdjacentHTML(`afterbegin`, galleryElements);
 
-galleryRef.insertAdjacentHTML(`afterbegin`, galleryElements)
-
-
-galleryRef.addEventListener(`click`, onGalleryRefClick)
+galleryRef.addEventListener(`click`, onGalleryRefClick);
 
 
 
-function makeGalleryMarkup (galleryItems) {
-    return galleryItems.map(({preview, original, description}) => {
-        return `
+
+function makeGalleryMarkup(galleryItems) {
+  return galleryItems
+    .map(({ preview, original, description }) => {
+      return `
         <div class="gallery__item">
   <a class="gallery__link" href="${original}">
     <img
@@ -28,31 +27,36 @@ function makeGalleryMarkup (galleryItems) {
     />
   </a>
 </div>
-        `
-    }).join("")
+        `;
+    })
+    .join("");
 }
 
-function onGalleryRefClick (e) {
-    e.preventDefault();
+function onGalleryRefClick(e) {
+  e.preventDefault();
 
-    if (e.target.nodeName !== "IMG") {
-        return;
-      }
-      const urlBigImg = e.target.dataset.source;
-console.log(urlBigImg)
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
 
+  const urlBigImg = e.target.dataset.source;
+  //   console.log(urlBigImg);
 
-
-const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(`
     <img src="${urlBigImg}" width="800" height="600">
-`)
+`);
 
-instance.show()
+  instance.show();
+  document.addEventListener(`keydown`, onEscapeKeyDown);
+
+  function onEscapeKeyDown(e) {
+    // console.log(e);
+    // console.log(e.code);
+
+    if (e.code === `Escape`) {
+      instance.close();
+      document.removeEventListener(`keydown`, onEscapeKeyDown);
+    }
+  }
 }
-
-
-
-
-
-
 
