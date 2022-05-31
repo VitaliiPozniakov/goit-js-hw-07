@@ -8,7 +8,6 @@ const galleryElements = makeGalleryMarkup(galleryItems);
 
 galleryRef.insertAdjacentHTML(`afterbegin`, galleryElements);
 
-galleryRef.addEventListener(`click`, onGalleryRefClick);
 
 function makeGalleryMarkup(galleryItems) {
   return galleryItems
@@ -24,12 +23,6 @@ function makeGalleryMarkup(galleryItems) {
     .join("");
 }
 
-function onGalleryRefClick(e) {
-  e.preventDefault();
-
-  if (e.target.nodeName !== "IMG") {
-    return;
-  }
 
   const lightbox = new SimpleLightbox(".gallery a", { captionDelay: 250 });
-}
+
