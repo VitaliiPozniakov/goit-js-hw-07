@@ -4,10 +4,7 @@ import { galleryItems } from "./gallery-items.js";
 
 const galleryRef = document.querySelector(`.gallery`);
 
-const galleryElements = makeGalleryMarkup(galleryItems);
-
-galleryRef.insertAdjacentHTML(`afterbegin`, galleryElements);
-
+galleryRef.insertAdjacentHTML(`afterbegin`, makeGalleryMarkup(galleryItems));
 
 function makeGalleryMarkup(galleryItems) {
   return galleryItems
@@ -23,6 +20,4 @@ function makeGalleryMarkup(galleryItems) {
     .join("");
 }
 
-
-  const lightbox = new SimpleLightbox(".gallery a", { captionDelay: 250 });
-
+const lightbox = new SimpleLightbox(".gallery a", { captionDelay: 250 });
