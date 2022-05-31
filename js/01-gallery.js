@@ -39,12 +39,19 @@ function onGalleryRefClick(e) {
     return;
   }
 
+  openAndCloseModal (e) 
+
+}
+
+function openAndCloseModal (e) {
+    
   const urlBigImg = e.target.dataset.source;
   //   console.log(urlBigImg);
 
   const instance = basicLightbox.create(`
     <img src="${urlBigImg}" width="800" height="600">
 `);
+
 
   instance.show();
   document.addEventListener(`keydown`, onEscapeKeyDown);
