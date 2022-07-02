@@ -63,6 +63,7 @@ function openAndCloseModal (e) {
     if (e.code === `Escape`) {
       instance.close();
       document.removeEventListener(`keydown`, onEscapeKeyDown);
+      document.removeEventListener(`click`, onEscapeKeyDown);
     }
   }
 }
